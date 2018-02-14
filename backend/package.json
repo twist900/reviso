@@ -5,11 +5,22 @@
   "author": "Georgy Shabunin < georgy.shabunin@gmail.com >",
   "license": "MIT",
   "scripts": {
-  	"start": "babel-node src/index.js"
+    "start": "babel-node src/index.js"
   },
   "devDependencies": {
+    "add": "^2.0.6",
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
+    "babel-eslint": "^8.2.1",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.6.1",
+    "prettier": "^1.10.2",
+    "yarn": "^1.3.2"
   },
   "dependencies": {
     "express": "^4.16.2"
