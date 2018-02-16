@@ -5,7 +5,7 @@
   "author": "Georgy Shabunin < georgy.shabunin@gmail.com >",
   "license": "MIT",
   "scripts": {
-    "start": "babel-node src/index.js",
+    "start": "nodemon --exec babel-node src/index.js",
     "test": "mocha --require babel-core/register test/**/*.test.js",
     "unit": "mocha --require babel-core/register test/unit/**/*.test.js",
     "integration": "mocha --require babel-core/register test/integration/**/*.test.js",
@@ -14,7 +14,10 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
+    "chai-http": "^3.0.0",
     "database-cleaner": "^1.2.0",
     "eslint": "^4.17.0",
     "eslint-config-airbnb": "^15.0.1",
@@ -24,10 +27,12 @@
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.6.1",
     "istanbul": "^0.4.5",
+    "nodemon": "^1.15.0",
     "prettier": "^1.10.2",
     "yarn": "^1.3.2"
   },
   "dependencies": {
+    "babel-runtime": "^6.26.0",
     "chai": "^4.1.2",
     "express": "^4.16.2",
     "mocha": "^5.0.1",
