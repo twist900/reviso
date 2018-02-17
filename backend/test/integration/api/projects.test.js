@@ -37,4 +37,47 @@ describe('Projects API', function() {
         });
     });
   });
+
+  describe('POST /projects', function() {
+    describe('with valid data', function() {
+      it('responds with the created project', function(done) {
+        chai
+          .request(app)
+          .post('/projects')
+          .type('json')
+          .send({
+            name: 'Test project',
+            client: 'Reviso',
+            description: 'Test description',
+            timeTotal: 55
+          })
+          .then(res => {
+            expect(res).to.have.status(200);
+            expect(res.body.data).to.contain.keys('_id');
+            done();
+          });
+      });
+    });
+
+    describe('with invalid data', function(done) {
+      it('responds with 400 Bad Request', function(done) {
+        chai
+          .request(app)
+          .post('/projects')
+          .type('json')
+          .send({
+            client: 'Reviso',
+            description: 'Test description',
+            timeTotal: 55
+          })
+          .catch(error => {
+            expect(error).to.have.status(400);
+            expect(error.response.body.error.message).to.include(
+              'Path `name` is required'
+            );
+            done();
+          });
+      });
+    });
+  });
 });
