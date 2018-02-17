@@ -6,7 +6,7 @@ import TopNavigation from './components/navigation/TopNavigation';
 const App = () => (
   <div className="ui container">
     <TopNavigation />
-    <Route path="/" exact component={ProjectsPage} />
+    <Route path="/projects" exact component={ProjectsPage} />
   </div>
 );
 
