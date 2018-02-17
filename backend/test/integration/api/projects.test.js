@@ -6,6 +6,10 @@ import app from '../../../src';
 
 const expect = chai.expect;
 chai.use(chaiHttp);
+const projectData = {
+  name: 'Test project',
+  client: 'Reviso'
+};
 
 describe('Projects API', function() {
   afterEach(done => db.afterEach(done));
@@ -13,10 +17,12 @@ describe('Projects API', function() {
   describe('GET /projects', function() {
     beforeEach(function(done) {
       Promise.all([
-        Project.create({ name: 'Project 1' }),
-        Project.create({ name: 'Project 2' }),
-        Project.create({ name: 'Project 3' })
-      ]).then(() => done());
+        Project.create({ ...projectData, name: 'Project 1' }),
+        Project.create({ ...projectData, name: 'Project 2' }),
+        Project.create({ ...projectData, name: 'Project 3' })
+      ])
+        .then(() => done())
+        .catch(err => console.log(err));
     });
 
     it('responds with all projects', function(done) {

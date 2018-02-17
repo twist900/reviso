@@ -4,7 +4,8 @@ import db from '../../db';
 
 const expect = chai.expect;
 const projectData = {
-  name: 'Test project'
+  name: 'Test project',
+  client: 'Reviso'
 };
 
 describe('Project', function() {
@@ -21,10 +22,17 @@ describe('Project', function() {
     });
 
     it('is invalid when name is not present', function() {
-      const project = new Project({ name: null });
+      const project = new Project({ ...projectData, name: null });
       const { errors } = project.validateSync();
 
       expect(errors.name).to.exist;
+    });
+
+    it('is invalid when client is not present', function() {
+      const project = new Project({ ...projectData, client: null });
+      const { errors } = project.validateSync();
+
+      expect(errors.client).to.exist;
     });
 
     it('is invalid when name not unique', function(done) {
