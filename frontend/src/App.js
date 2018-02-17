@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Route } from 'react-router-dom';
+import ProjectsPage from './components/pages/ProjectsPage';
 
-class App extends Component {
-  render() {
-    return (
-      <div>Reviso App</div>
-    );
-  }
-}
+const App = () => (
+  <div>
+    <Route path="/" exact component={ProjectsPage} />
+  </div>
+);
 
 export default App;
