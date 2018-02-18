@@ -2,7 +2,7 @@ import Registration from '../models/Registration';
 
 class RegistrationService {
   static find(criteria) {
-    return Registration.find(criteria);
+    return Registration.find(criteria).populate('project').exec();
   }
 
   static insert(registration) {

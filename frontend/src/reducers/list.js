@@ -8,6 +8,7 @@ import {
 } from '../types';
 
 const initialState = {
+  name: '',
   items: [],
   loading: false,
   newItem: { item: null, error: null, loading: false }
@@ -18,7 +19,12 @@ const list = (state = initialState, action = {}) => {
     case FETCH_ITEMS:
       return { ...state, loading: true };
     case FETCH_ITEMS_SUCCESS:
-      return { ...state, loading: false, items: action.items };
+      return {
+        ...state,
+        loading: false,
+        name: action.name,
+        items: action.items
+      };
     case CREATE_ITEM:
       return {
         ...state,

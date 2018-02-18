@@ -2,11 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Icon, Button, Grid } from 'semantic-ui-react';
 
-const ProjectItem = ({ name, client, description, timeTotal }) => (
-  <Card key={name} fluid>
+const ListItem = ({
+  header,
+  meta,
+  description,
+  timeTotal,
+  btnLabel,
+  icon,
+  btnCircular
+}) => (
+  <Card key={header} fluid>
     <Card.Content>
-      <Card.Header content={name} />
-      <Card.Meta content={client} />
+      <Card.Header content={header} />
+      <Card.Meta content={meta} />
       <Card.Description content={description} />
     </Card.Content>
     <Card.Content extra>
@@ -17,9 +25,8 @@ const ProjectItem = ({ name, client, description, timeTotal }) => (
           </div>
         </Grid.Column>
         <Grid.Column floated="right" width={2}>
-          <Button>
-            <Icon name="dollar" />
-            Bill
+          <Button icon={icon} circular={btnCircular}>
+            {btnLabel}
           </Button>
         </Grid.Column>
       </Grid>
@@ -27,16 +34,18 @@ const ProjectItem = ({ name, client, description, timeTotal }) => (
   </Card>
 );
 
-ProjectItem.props = {
-  description: "",
-  timeTotal: 0
-}
+ListItem.props = {
+  description: '',
+  timeTotal: 0,
+  btnCircular: false
+};
 
-ProjectItem.propTypes = {
+ListItem.propTypes = {
   name: PropTypes.string.isRequired,
   client: PropTypes.string.isRequired,
   timeTotal: PropTypes.number,
-  description: PropTypes.string
+  description: PropTypes.string,
+  btnCircular: PropTypes.bool
 };
 
-export default ProjectItem;
+export default ListItem;

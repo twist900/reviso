@@ -1,22 +1,46 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button, Message } from 'semantic-ui-react';
+import { Form, Dropdown, Button, Message } from 'semantic-ui-react';
 import InlineError from '../messages/InlineError';
+import api from '../../api';
 
-class ProjectForm extends Component {
+class RegistrationForm extends Component {
   state = {
+    options: [],
     data: {
       name: '',
-      client: '',
+      project: '',
       description: ''
     },
+    projectsLoading: false,
     errors: {},
     serverError: {}
   };
 
+  componentDidMount() {
+    this.setState({ projectsLoading: true });
+    api.list.fetchAll('projects').then(projects => {
+      const options = [];
+      projects.forEach(project => {
+        options.push({
+          key: project._id,
+          value: project._id,
+          text: project.name
+        });
+      });
+
+      this.setState({ ...this.state, options, projectsLoading: false });
+    });
+  }
+
   onChange = e =>
     this.setState({
       data: { ...this.state.data, [e.target.name]: e.target.value }
+    });
+
+  onProjectChange = (e, data) =>
+    this.setState({
+      data: { ...this.state.data, project: data.value }
     });
 
   onSubmit = () => {
@@ -30,7 +54,7 @@ class ProjectForm extends Component {
   validate = data => {
     const errors = {};
     if (!data.name) errors.name = "Can't be blank";
-    if (!data.client) errors.client = "Can't be blank";
+    if (!data.project) errors.project = "Can't be blank";
     return errors;
   };
 
@@ -57,16 +81,18 @@ class ProjectForm extends Component {
           />
           {errors.name && <InlineError text={errors.name} />}
         </Form.Field>
-        <Form.Field error={!!errors.client}>
-          <label htmlFor="client">Client</label>
-          <input
-            id="client"
-            name="client"
-            placeholder="Client"
-            value={data.client}
-            onChange={this.onChange}
+        <Form.Field error={!!errors.project}>
+          <label htmlFor="project">Project</label>
+          <Dropdown
+            id="project"
+            name="project"
+            placeholder="Select a project"
+            options={this.state.options}
+            onChange={this.onProjectChange}
+            loading={this.state.projectsLoading}
+            fluid
+            selection
           />
-          {errors.client && <InlineError text={errors.client} />}
         </Form.Field>
         <Form.Field error={!!errors.description}>
           <label htmlFor="description">Description</label>
@@ -84,15 +110,15 @@ class ProjectForm extends Component {
     );
   }
 }
-ProjectForm.defaultProps = {
+RegistrationForm.defaultProps = {
   loading: false,
   serverError: {}
 };
 
-ProjectForm.propTypes = {
+RegistrationForm.propTypes = {
   submit: PropTypes.func.isRequired,
   loading: PropTypes.bool,
   serverError: PropTypes.shape({ message: PropTypes.string.isRequired })
 };
 
-export default ProjectForm;
+export default RegistrationForm;

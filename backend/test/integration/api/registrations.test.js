@@ -26,11 +26,11 @@ describe('Registration API', function() {
           Promise.all([
             Registration.create({
               ...registrationData,
-              projectId: project._id
+              project: project._id
             }),
             Registration.create({
               ...registrationData,
-              projectId: project._id
+              project: project._id
             })
           ])
         )
@@ -64,7 +64,7 @@ describe('Registration API', function() {
             .type('json')
             .send({
               ...registrationData,
-              projectId: project._id
+              project: project._id
             })
             .then(res => {
               expect(res).to.have.status(200);
@@ -83,7 +83,7 @@ describe('Registration API', function() {
           .type('json')
           .send({
             ...registrationData,
-            projectId: null
+            project: null
           })
           .catch(error => {
             expect(error).to.have.status(400);

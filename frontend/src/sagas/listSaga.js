@@ -15,6 +15,7 @@ function* fetchItems(payload) {
 
   yield put({
     type: FETCH_ITEMS_SUCCESS,
+    name: payload.listName,
     items
   });
 }
@@ -29,7 +30,8 @@ function* createItem(payload) {
       item: result
     });
     yield put({
-      type: FETCH_ITEMS
+      type: FETCH_ITEMS,
+      listName
     });
   } catch (error) {
     yield put({

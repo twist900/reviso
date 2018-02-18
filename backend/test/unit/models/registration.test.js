@@ -23,7 +23,7 @@ describe('Registration', function() {
       Project.create(projectData).then(project => {
         const registration = new Registration({
           ...registrationData,
-          projectId: project._id
+          project: project._id
         });
         const errors = registration.validateSync();
 
@@ -31,14 +31,14 @@ describe('Registration', function() {
       });
     });
 
-    it('is invalid when projectId is not present', function(done) {
+    it('is invalid when project is not present', function(done) {
       const registration = new Registration({
         ...registrationData,
-        projectId: null
+        project: null
       });
       const { errors } = registration.validateSync();
 
-      expect(errors.projectId).to.exist;
+      expect(errors.project).to.exist;
       done();
     });
 
@@ -46,7 +46,7 @@ describe('Registration', function() {
       Project.create(projectData).then(project => {
         const registration = new Registration({
           ...registrationData,
-          projectId: project._id,
+          project: project._id,
           name: null
         });
         const { errors } = registration.validateSync();
@@ -64,7 +64,7 @@ describe('Registration', function() {
           .then(project =>
             Registration.create({
               ...registrationData,
-              projectId: project._id
+              project: project._id
             })
           )
           .then(registration => {
@@ -73,7 +73,7 @@ describe('Registration', function() {
             return registration.save();
           })
           .then(registration =>
-            Project.findById({ _id: registration.projectId })
+            Project.findById({ _id: registration.project })
           )
           .then(project => {
             expect(project.timeTotal).to.equal(60);
