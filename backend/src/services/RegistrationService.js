@@ -21,7 +21,7 @@ class RegistrationService {
     if (playing) {
       const now = moment(new Date());
       const start = moment(lastStart);
-      const duration = moment.duration(now.diff(start)).asHours();
+      const duration = moment.duration(now.diff(start)).asSeconds();
 
       prevRegistration.playing = false;
       prevRegistration.time = time + duration;

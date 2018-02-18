@@ -122,7 +122,7 @@ describe('Registration API', function() {
           .type('json')
           .then(() => Project.findById({ _id: registration.project }))
           .then(project => {
-            expect(Math.round(project.timeTotal)).to.equal(2);
+            expect(Math.round(project.timeTotal)).to.be.above(7200);
             done();
           })
       );

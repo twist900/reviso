@@ -1,6 +1,6 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
-import { TOGGLE_TIMER, TOGGLE_TIMER_SUCCESS } from '../types';
+import { TOGGLE_TIMER, FETCH_ITEMS } from '../types';
 import api from '../api';
 
 function* toggleTimer(payload) {
@@ -8,8 +8,8 @@ function* toggleTimer(payload) {
   const registration = yield call(api.registrations.toggle, payload.id);
 
   yield put({
-    type: TOGGLE_TIMER_SUCCESS,
-    registration
+    type: FETCH_ITEMS,
+    listName: 'registrations'
   });
 }
 
