@@ -20,9 +20,7 @@ describe('Projects API', function() {
         Project.create({ ...projectData, name: 'Project 1' }),
         Project.create({ ...projectData, name: 'Project 2' }),
         Project.create({ ...projectData, name: 'Project 3' })
-      ])
-        .then(() => done())
-        .catch(err => console.log(err));
+      ]).then(() => done());
     });
 
     it('responds with all projects', function(done) {
