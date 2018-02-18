@@ -7,5 +7,9 @@ export default {
       axios
         .post(`/${listName}`, item)
         .catch(error => Promise.reject(error.response.data.error))
+  },
+  registrations: {
+    toggle: id =>
+      axios.get(`registrations/${id}/toggle`).then(res => res.data.data)
   }
 };

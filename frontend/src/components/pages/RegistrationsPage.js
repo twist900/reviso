@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { map } from 'lodash';
 import { Grid, Loader, Button } from 'semantic-ui-react';
 
-import ListItem from '../ListItem';
+import RegistrationItem from '../RegistrationItem';
 import FormModal from '../FormModal';
 import RegistrationForm from '../forms/RegistrationForm';
 import { fetchItems, resetNewItem, createItem } from '../../actions/list';
+import { toggleTimer } from '../../actions/registrations';
 
 const LIST_NAME = 'registrations';
 
@@ -33,16 +34,14 @@ class RegistrationsPage extends Component {
 
   initList = () => this.props.fetchItems(LIST_NAME);
 
+  toggleTimer = id => this.props.toggleTimer(id);
+
   renderRegistration = registration => {
     return (
-      <ListItem
+      <RegistrationItem
         key={registration.name}
-        header={registration.name}
-        meta={registration.project.name}
-        description={registration.description}
-        timeTotal={registration.time}
-        icon="play"
-        btnCircular
+        toggleTimer={this.toggleTimer.bind(this, registration._id)}
+        {...registration}
       />
     );
   };
@@ -102,6 +101,7 @@ RegistrationsPage.propTypes = {
   fetchItems: PropTypes.func.isRequired,
   createItem: PropTypes.func.isRequired,
   resetNewItem: PropTypes.func.isRequired,
+  toggleTimer: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired
   ).isRequired,
@@ -125,5 +125,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   fetchItems,
   createItem,
-  resetNewItem
+  resetNewItem,
+  toggleTimer
 })(RegistrationsPage);

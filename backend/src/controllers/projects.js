@@ -1,11 +1,11 @@
 import ProjectService from '../services/ProjectService';
 
-exports.getProjects = async (req, res) => {
+exports.get = async (req, res) => {
   const projects = await ProjectService.find(req.query);
   res.json({ data: projects });
 };
 
-exports.createProject = async (req, res) => {
+exports.create = async (req, res) => {
   try {
     const project = await ProjectService.insert(req.body);
     res.json({ data: project });

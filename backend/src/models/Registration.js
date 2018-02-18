@@ -6,16 +6,10 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
   name: { type: String, required: true },
   description: { type: String },
-  previousTime: { type: Number, default: 0 },
+  lastStart: { type: Date },
   time: { type: Number, default: 0 },
+  playing: { type: Boolean, default: false},
   project: { type: Schema.Types.ObjectId, ref: 'Project', required: true }
-});
-
-schema.post('save', async registration => {
-  const project = await Project.findById({ _id: registration.project });
-  const { time, previousTime } = registration;
-  project.timeTotal += time - previousTime;
-  await project.save();
 });
 
 export default mongoose.model('Registration', schema);

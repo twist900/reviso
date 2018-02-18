@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { map } from 'lodash';
 import { Grid, Loader, Button } from 'semantic-ui-react';
 
-import ListItem from '../ListItem';
+import ProjectItem from '../ProjectItem';
 import FormModal from '../FormModal';
 import ProjectForm from '../forms/ProjectForm';
 import { fetchItems, resetNewItem, createItem } from '../../actions/list';
@@ -33,17 +33,7 @@ class ProjectsPage extends Component {
 
   initList = () => this.props.fetchItems(LIST_NAME);
 
-  renderProject = project => (
-    <ListItem
-      key={project.name}
-      header={project.name}
-      meta={project.client}
-      description={project.description}
-      timeTotal={project.timeTotal}
-      btnLabel="Bill"
-      icon="dollar"
-    />
-  );
+  renderProject = project => <ProjectItem key={project.name} {...project} />;
 
   render() {
     const { items, loading, newItem, listName } = this.props;

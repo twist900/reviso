@@ -56,30 +56,4 @@ describe('Registration', function() {
       });
     });
   });
-
-  describe('hooks', function() {
-    describe('after save', function() {
-      it('updates totalTime on project', function(done) {
-        Project.create(projectData)
-          .then(project =>
-            Registration.create({
-              ...registrationData,
-              project: project._id
-            })
-          )
-          .then(registration => {
-            registration.previousTime = registration.time;
-            registration.time += 60;
-            return registration.save();
-          })
-          .then(registration =>
-            Project.findById({ _id: registration.project })
-          )
-          .then(project => {
-            expect(project.timeTotal).to.equal(60);
-            done();
-          });
-      });
-    });
-  });
 });
