@@ -1,0 +1,25 @@
+version: "2"
+services:
+  backend:
+    environment:
+      - MONGODB_URL=mongodb://mongo/reviso_dev
+    container_name: backend
+    build: ./backend
+    ports:
+      - "8080:8080"
+    links:
+      - mongo
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    links:
+      - backend
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
