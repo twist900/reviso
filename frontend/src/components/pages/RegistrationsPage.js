@@ -13,9 +13,9 @@ import {
   createItem
 } from '../../actions/list';
 
-const LIST_NAME = 'projects';
+const LIST_NAME = 'registrations';
 
-class ProjectsPage extends Component {
+class RegistrationsPage extends Component {
   state = { modalOpen: false };
 
   componentDidMount = () => this.props.fetchItems(LIST_NAME);
@@ -84,20 +84,20 @@ class ProjectsPage extends Component {
   }
 }
 
-ProjectsPage.defaultProps = {
+RegistrationsPage.defaultProps = {
   loading: false,
   serverError: { message: null }
 };
 
-ProjectsPage.propTypes = {
+RegistrationsPage.propTypes = {
   fetchItems: PropTypes.func.isRequired,
   createItem: PropTypes.func.isRequired,
   resetNewItem: PropTypes.func.isRequired,
-  items: PropTypes.arrayOf(
+  projects: PropTypes.arrayOf(
     PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired
   ).isRequired,
-  newItem: PropTypes.shape({
-    item: PropTypes.shape({ name: PropTypes.string.isRequired }),
+  newProject: PropTypes.shape({
+    project: PropTypes.shape({ name: PropTypes.string.isRequired }),
     loading: PropTypes.bool.isRequired,
     error: PropTypes.string
   }).isRequired,
@@ -115,4 +115,4 @@ export default connect(mapStateToProps, {
   fetchItems,
   createItem,
   resetNewItem
-})(ProjectsPage);
+})(RegistrationsPage);

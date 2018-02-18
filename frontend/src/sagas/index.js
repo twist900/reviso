@@ -1,6 +1,6 @@
-import projectSaga from './projectSaga';
+import listSaga from './listSaga';
 
 export default sagaMiddleware => {
-  sagaMiddleware.run(projectSaga);
+  sagaMiddleware.run(listSaga);
 };
 

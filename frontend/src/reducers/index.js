@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import projects from './projects';
+import list from './list';
 
 export default combineReducers({
-  projects
+  list
 });
