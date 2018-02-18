@@ -72,8 +72,8 @@ describe('Registration', function() {
             registration.time += 60;
             return registration.save();
           })
-          .then(registration1 =>
-            Project.findById({ _id: registration1.projectId })
+          .then(registration =>
+            Project.findById({ _id: registration.projectId })
           )
           .then(project => {
             expect(project.timeTotal).to.equal(60);
