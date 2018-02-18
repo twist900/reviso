@@ -29,13 +29,13 @@ const ProjectItem = ({ name, client, description, timeTotal }) => (
 
 ProjectItem.props = {
   description: "",
-  timeTotal: ""
+  timeTotal: 0
 }
 
 ProjectItem.propTypes = {
   name: PropTypes.string.isRequired,
   client: PropTypes.string.isRequired,
-  timeTotal: PropTypes.string,
+  timeTotal: PropTypes.number,
   description: PropTypes.string
 };
 
