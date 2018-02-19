@@ -5,7 +5,7 @@ import api from '../api';
 
 function* toggleTimer(payload) {
   yield call(delay, 1000);
-  const registration = yield call(api.registrations.toggle, payload.id);
+  yield call(api.registrations.toggle, payload.id);
 
   yield put({
     type: FETCH_ITEMS,

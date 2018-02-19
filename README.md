@@ -15,7 +15,7 @@ Simple time tracking for freelancers
 
 With Docker:
 ```
-docker-compose up --build
+docker-compose up
 ```
 
 Without docker:
