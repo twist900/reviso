@@ -26,6 +26,8 @@ Start the server:
 ```
 cd backend
 
+cp .env.example .env
+
 yarn install
 
 yarn start
